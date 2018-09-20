@@ -1,0 +1,127 @@
+用户
+    Tb_User - - - 登录账户
+        Id
+        Email - - - 登录邮箱
+        Username - - - 登录用户名
+        Password - - - 登录密码
+        Salt - - - 加密盐
+        Status - - - 用户状态
+        IsActive - - - 是否激活
+        ActiveCode - - - 激活码
+        Created - - - 创建时间
+        Updated - - - 更新时间
+
+    sql:
+        insert into Tb_User(Email, Username, Password, Salt, Status, IsActive, ActiveCode, Created, Updated) values(?,?,?,?,?,?,?,?,?)
+        select * from Tb_User where Email=?
+        select * from Tb_User where Username=?
+        update Tb_User set 
+
+    Tb_User_Info - - - 用户详情信息
+        Id
+        Nickname - - - 昵称
+        Age - - - 年龄
+        Gender - - - 性别
+        Name - - - 姓名
+        Birthday - - - 出生日期
+        Updated - - - 更新时间
+    Tb_User_Other - - - 用户统计信息
+        Id
+        BeFollowCount - - - 被关注数
+        FollowCount - - - 关注数
+        LikeCount - - - 被赞数
+        NoteCount - - - 帖子数
+        ResourceCount - - - 资源数
+        BeCollectedCount - - - 被收藏数
+        CollectCount - - - 收藏数
+        Updated - - - 更新时间
+
+帖子
+    Tb_Note
+        Id
+        ResourceCount - - - 资源数
+        Content - - - 附带文本内容
+        ReplayCount - - - 评论数
+        UserID - - - 创建用户Id
+        LikeCount - - - 点赞数
+        CollectCount - - - 收藏数
+        Views - - - 浏览数
+        Status - - - 状态：0.正常 1.删除
+        Created - - - 创建时间
+        Updated - - - 更新时间
+    Tb_Note_Comment
+        Id
+        EntityType - - - 被评论的实体
+        EntityId - - - 被评论的实体Id
+        Content - - - 评论内容
+        UserId - - - 评论人Id
+        Created - - - 评论时间
+        Status - - - 状态：0.正常 1.删除
+        ParentId - - - 父评论
+关注
+    Tb_Follow_User - - - 关注
+        Id
+        BeFollowedUserId - - - 被关注人Id
+        FollowUserId - - - 关注人Id
+        Created
+        Deleted
+消息
+    Tb_Message
+        Id
+        EventType - - - 消息事件类型，如点赞，评论，关注
+        EntityType - - - 消息事件发生的实体类型
+        EntityId - - - 消息事件发生的实体Id
+        OriginId - - - 消息产生者
+        AcceptId - - - 消息接收者
+        Content - - - 消息附带内容，如评论内容
+        Status - - - 状态 0.未查看 1.已查看
+        Created
+收藏
+    Tb_Collection
+        Id
+        EntityType - - - 被收藏实体类型
+        EntityId - - - 被收藏实体Id
+        CollectUserId - - - 收藏的人
+        OriginId - - - 实体所属人
+        CategoryId - - - 收藏所属分类
+        Status
+        Created
+    Tb_Collection_Category
+        Id
+        Title - - - 收藏名称
+        CollectCount - - - 收藏数
+        UserId
+        Status
+        Created
+图片/视频资源
+    Tb_Resource
+        Id
+        Url - - - 资源地址
+        Name - - - 资源名
+        Type - - - 资源类型，0.image, 1.video
+        Status - - - 状态
+        UserId
+        NoteId
+        Created
+    Tb_Resource_Census
+        Id
+        Views - -  - 浏览数
+        LikeCount - - - 点赞数
+        CommentCount - - - 评论数
+        BeCollectCount - - - 被收藏数
+        OrderValue - - - 排序值
+
+权限管理
+    Tb_Auth_Role
+    Tb_Auth_User
+    Tb_Auth_Resource
+日志
+    Tb_Log
+        Id
+        UserId
+        EventTypeCode
+        EventTypeName
+        EventName
+        EventCode
+        Description
+        Created
